@@ -104,3 +104,4 @@ extension DoublyLinkedList: Sequence {
     LinkedListIterator(node: head)
   }
 }
+
