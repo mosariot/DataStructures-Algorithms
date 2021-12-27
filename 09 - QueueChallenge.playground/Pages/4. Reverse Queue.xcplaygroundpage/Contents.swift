@@ -11,8 +11,16 @@
 extension QueueArray {
     
     func reversed() -> QueueArray {
-        // replace the body of this method
-        return self // return a copy of the reversed queue
+        var queue = self
+        var stack = Stack<T>()
+        while let element = queue.dequeue() {
+            stack.push(element)
+            
+        }
+        while let element = stack.pop() {
+            queue.enqueue(element)
+        }
+        return queue
     }
 }
 

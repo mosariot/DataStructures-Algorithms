@@ -36,5 +36,63 @@ protocol Deque {
     mutating func dequeue(from direction: Direction) -> Element?
 }
 
+public class DequeLinkedList<T>: Deque {
+    private var list = DoublyLinkedList<T>()
+    public init() {}
+    
+    public var isEmpty: Bool {
+        list.isEmpty
+    }
+    
+    func peek(from direction: Direction) -> T? {
+        switch direction {
+        case .front:
+            return list.first?.value
+        case .back:
+            return list.last?.value
+        }
+    }
+    
+    func enqueue(_ element: T, to direction: Direction) -> Bool {
+        switch direction {
+        case .front:
+            list.prepend(element)
+            return true
+        case .back:
+            list.append(element)
+            return true
+        }
+    }
+    
+    func dequeue(from direction: Direction) -> T? {
+        switch direction {
+        case .front:
+            guard let element = list.first else { return nil }
+            return list.remove(element)
+        case .back:
+            guard let element = list.last else { return nil }
+            return list.remove(element)
+        }
+    }
+}
 
+extension DequeLinkedList: CustomStringConvertible {
+    public var description: String {
+        String(describing: list)
+    }
+}
+
+// using
+
+var queue = DequeLinkedList<String>()
+queue.enqueue("Ray", to: .front)
+queue.enqueue("Brian", to: .front)
+queue.enqueue("Eric", to: .back)
+queue
+queue.dequeue(from: .back)
+queue.dequeue(from: .front)
+queue.enqueue("Jane", to: .back)
+queue
+queue.peek(from: .front)
+queue.peek(from: .back)
 //: [Next](@next)

@@ -11,29 +11,39 @@
  conform to:
  */
 
+import Darwin
+
 public protocol BoardGameManager {
     
     associatedtype Player
     mutating func nextPlayer() -> Player?
 }
 
-/*
- var queue = QueueArray<String>()
- queue.enqueue("Vincent")
- queue.enqueue("Remel")
- queue.enqueue("Lukiih")
- queue.enqueue("Allison")
- print(queue)
- 
- print("===== boardgame =======")
- queue.nextPlayer()
- print(queue)
- queue.nextPlayer()
- print(queue)
- queue.nextPlayer()
- print(queue)
- queue.nextPlayer()
- print(queue)
- */
+extension QueueArray: BoardGameManager {
+    
+    public mutating func nextPlayer() -> T? {
+        guard let nextPlayer = dequeue() else { return nil }
+        print("It's \(nextPlayer)'s turn")
+        enqueue(nextPlayer)
+        return nextPlayer
+    }
+}
+
+var queue = QueueArray<String>()
+queue.enqueue("Vincent")
+queue.enqueue("Remel")
+queue.enqueue("Lukiih")
+queue.enqueue("Allison")
+print(queue)
+
+print("===== boardgame =======")
+queue.nextPlayer()
+print(queue)
+queue.nextPlayer()
+print(queue)
+queue.nextPlayer()
+print(queue)
+queue.nextPlayer()
+print(queue)
 
 //: [Next Challenge](@next)
