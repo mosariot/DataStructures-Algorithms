@@ -12,28 +12,28 @@
  */
 
 public protocol BoardGameManager {
-  
-  associatedtype Player
-  mutating func nextPlayer() -> Player?
+    
+    associatedtype Player
+    mutating func nextPlayer() -> Player?
 }
 
 /*
-var queue = QueueArray<String>()
-queue.enqueue("Vincent")
-queue.enqueue("Remel")
-queue.enqueue("Lukiih")
-queue.enqueue("Allison")
-print(queue)
-
-print("===== boardgame =======")
-queue.nextPlayer()
-print(queue)
-queue.nextPlayer()
-print(queue)
-queue.nextPlayer()
-print(queue)
-queue.nextPlayer()
-print(queue)
-*/
+ var queue = QueueArray<String>()
+ queue.enqueue("Vincent")
+ queue.enqueue("Remel")
+ queue.enqueue("Lukiih")
+ queue.enqueue("Allison")
+ print(queue)
+ 
+ print("===== boardgame =======")
+ queue.nextPlayer()
+ print(queue)
+ queue.nextPlayer()
+ print(queue)
+ queue.nextPlayer()
+ print(queue)
+ queue.nextPlayer()
+ print(queue)
+ */
 
 //: [Next Challenge](@next)
