@@ -47,5 +47,32 @@ let seven = TreeNode(7)
 twenty.add(five2)
 twenty.add(seven)
 
+// Fourth level
+let three = TreeNode(3)
+let eight = TreeNode(8)
+seven.add(three)
+seven.add(eight)
+
 // Your solution here
 
+extension TreeNode {
+    public func printEachLevel() {
+        var queue = Queue<TreeNode>()
+        var nodesLeftInCurrentLevel = 0
+        queue.enqueue(self)
+        
+        while !queue.isEmpty {
+            nodesLeftInCurrentLevel = queue.count
+            
+            while nodesLeftInCurrentLevel > 0 {
+                guard let node = queue.dequeue() else { break }
+                print(node.value, terminator: " ")
+                node.children.forEach { queue.enqueue($0) }
+                nodesLeftInCurrentLevel -= 1
+            }
+            print()
+        }
+    }
+}
+
+tree.printEachLevel()

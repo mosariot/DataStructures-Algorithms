@@ -19,7 +19,7 @@ extension TreeNode {
     }
 }
 
-// depth-first stack implementation
+// depth-first stack edition
 extension TreeNode {
     public func forEachDepthFirstStack(visit: (TreeNode) -> Void) {
         visit(self)
@@ -27,7 +27,7 @@ extension TreeNode {
         children.forEach { stack.push($0) }
         while let node = stack.pop() {
             visit(node)
-            node.children.forEach { $0.forEachDepthFirstStack(visit: visit) }
+            node.children.forEach { stack.push($0) }
         }
     }
 }
