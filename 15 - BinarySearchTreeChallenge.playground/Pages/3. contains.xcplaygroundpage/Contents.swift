@@ -19,9 +19,33 @@ bst2.insert(5)
 bst2.insert(3)
 bst2.insert(1)
 bst2.insert(0)
-// bst2.insert(100)
+bst2.insert(100)
 
-// Your solution here
+extension BinarySearchTree {
+    
+    func contains<Element: Hashable>(_ tree: BinarySearchTree<Element>) -> Bool {
+        var originalSet = Set<Element>()
+        var secondSet = Set<Element>()
+        root?.traverseInOrder { originalSet.insert($0 as! Element) }
+        tree.root?.traverseInOrder { secondSet.insert($0) }
+        let originalCount = originalSet.count
+        for element in secondSet {
+            originalSet.insert(element)
+        }
+        return originalCount == originalSet.count
+    }
+}
 
-// bst.contains(bst2)
+extension BinarySearchTree where Element: Hashable {
+    
+    public func containsBookEdition(_ subtree: BinarySearchTree) -> Bool {
+        var set: Set<Element> = []
+        root?.traverseInOrder { set.insert($0) }
+        var isEqual = true
+        subtree.root?.traverseInOrder { isEqual = isEqual && set.contains($0) }
+        return isEqual
+    }
+}
 
+bst.contains(bst2)
+bst.containsBookEdition(bst2)
