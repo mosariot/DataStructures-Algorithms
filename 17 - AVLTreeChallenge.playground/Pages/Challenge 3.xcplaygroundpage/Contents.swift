@@ -13,9 +13,40 @@
  of the traversal methods so that conforming types get these methods for free.
  Have AVLNode conform to this.
  */
-// Your code here
+protocol TraversableBinaryNode {
+    
+    associatedtype Element
+    
+    var value: Element { get }
+    var leftChild: Self? { get }
+    var rightChild: Self? { get }
+    func traverseInOrder(visit: (Element) -> Void)
+    func traversePreOrder(visit: (Element) -> Void)
+    func traversePostOrder(visit: (Element) -> Void)
+}
 
-// extension AVLNode: TraversableBinaryNode {}
+extension TraversableBinaryNode {
+    
+    func traverseInOrder(visit: (Element) -> Void) {
+        leftChild?.traverseInOrder(visit: visit)
+        visit(value)
+        rightChild?.traverseInOrder(visit: visit)
+    }
+    
+    func traversePreOrder(visit: (Element) -> Void) {
+        visit(value)
+        leftChild?.traverseInOrder(visit: visit)
+        rightChild?.traverseInOrder(visit: visit)
+    }
+    
+    func traversePostOrder(visit: (Element) -> Void) {
+        leftChild?.traverseInOrder(visit: visit)
+        rightChild?.traverseInOrder(visit: visit)
+        visit(value)
+    }
+}
+
+extension AVLNode: TraversableBinaryNode { }
 
 example(of: "using TraversableBinaryNode") {
     var tree = AVLTree<Int>()
@@ -23,5 +54,5 @@ example(of: "using TraversableBinaryNode") {
         tree.insert(i)
     }
     print(tree)
-    // tree.root?.traverseInOrder { print($0) }
+    tree.root?.traverseInOrder { print($0) }
 }
