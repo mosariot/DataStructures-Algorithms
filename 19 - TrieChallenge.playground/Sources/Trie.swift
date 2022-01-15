@@ -1,9 +1,23 @@
 // Copyright (c) 2021 Razeware LLC
 // For full license & permission details, see LICENSE.markdown.
 
-public class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
+public class Trie<CollectionType: Collection & Hashable> where CollectionType.Element: Hashable {
     
     public typealias Node = TrieNode<CollectionType.Element>
+    
+    public private(set) var collections: Set<CollectionType> = []
+    
+    public var count: Int {
+        var count = 0
+        root.forEachDepthFirst { node in
+            if node.isTerminating { count += 1 }
+        }
+        return count
+    }
+    public var countBook: Int { collections.count }
+    
+    public var isEmpty: Bool { root.key == nil }
+    public var isEmptyBook: Bool { collections.isEmpty }
     
     private let root = Node(key: nil, parent: nil)
     
@@ -17,7 +31,12 @@ public class Trie<CollectionType: Collection> where CollectionType.Element: Hash
             }
             current = current.children[element]!
         }
-        current.isTerminating = true
+        if current.isTerminating {
+            return
+        } else {
+            current.isTerminating = true
+            collections.insert(collection)
+        }
     }
     
     public func contains(_ collection: CollectionType) -> Bool {
@@ -43,6 +62,7 @@ public class Trie<CollectionType: Collection> where CollectionType.Element: Hash
             return
         }
         current.isTerminating = false
+        collections.remove(collection)
         while let parent = current.parent, current.children.isEmpty && !current.isTerminating {
             parent.children[current.key!] = nil
             current = parent

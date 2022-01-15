@@ -27,10 +27,9 @@ example(of: "collections") {
     trie.insert("carapace")
     trie.insert("cargo")
     
-    // After your changes these should compile and evaluate to true
-    // trie.collections.sorted() == ["car", "carapace", "carbs", "card", "care", "cared", "cargo", "cars"]
-    // trie.count == 8
-    // trie.isEmpty == false
+    trie.collections.sorted() == ["car", "carapace", "carbs", "card", "care", "cared", "cargo", "cars"]
+    trie.count == 8
+    trie.isEmpty == false
 }
 
 

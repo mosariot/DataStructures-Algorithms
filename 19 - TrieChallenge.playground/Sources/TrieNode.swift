@@ -12,4 +12,9 @@ public class TrieNode<Key: Hashable> {
         self.key = key
         self.parent = parent
     }
+    
+    public func forEachDepthFirst(visit: (TrieNode) -> Void) {
+        visit(self)
+        children.forEach { $0.value.forEachDepthFirst(visit: visit) }
+    }
 }
