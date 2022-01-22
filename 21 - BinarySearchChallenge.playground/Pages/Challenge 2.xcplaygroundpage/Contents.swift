@@ -19,13 +19,13 @@ func findIndicesArrayBased(of value: Int, in array: [Int]) -> Range<Int>? {
     return leftIndex..<rightIndex+1
 }
 
-func findIndicesBinarySearchBased(of value: Int, in array: [Int]) -> CountableRange<Int>? {
+func findIndicesBinarySearchBased(of value: Int, in array: [Int]) -> Range<Int>? {
     guard let startIndex = startIndex(of: value, in: array, range: 0..<array.count) else { return nil }
     guard let endIndex = endIndex(of: value, in: array, range: 0..<array.count) else { return nil }
     return startIndex..<endIndex
 }
 
-func startIndex(of value: Int, in array: [Int], range: CountableRange<Int>) -> Int? {
+func startIndex(of value: Int, in array: [Int], range: Range<Int>) -> Int? {
     let middleIndex = range.lowerBound + (range.upperBound - range.lowerBound) / 2
     
     if middleIndex == 0 || middleIndex == array.count - 1 {
@@ -43,7 +43,7 @@ func startIndex(of value: Int, in array: [Int], range: CountableRange<Int>) -> I
     }
 }
 
-func endIndex(of value: Int, in array: [Int], range: CountableRange<Int>) -> Int? {
+func endIndex(of value: Int, in array: [Int], range: Range<Int>) -> Int? {
     let middleIndex = range.lowerBound + (range.upperBound - range.lowerBound) / 2
     
     if middleIndex == 0 || middleIndex == array.count - 1 {
