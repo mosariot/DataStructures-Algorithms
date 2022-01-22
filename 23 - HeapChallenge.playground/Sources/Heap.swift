@@ -12,8 +12,14 @@ public struct Heap<Element: Equatable> {
         buildHeap()
     }
     
-    mutating public func merge(heap: Heap) {
-        
+    mutating public func merge(_ heap: Heap) {
+        let mergedHeap = Heap(sort: sort, elements: elements+heap.elements)
+        elements = mergedHeap.elements
+    }
+    
+    mutating public func mergeBookEdition(_ heap: Heap) {
+        elements = elements + heap.elements
+        buildHeap()
     }
     
     public var isEmpty: Bool {

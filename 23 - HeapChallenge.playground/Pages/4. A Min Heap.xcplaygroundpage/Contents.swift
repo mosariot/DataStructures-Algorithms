@@ -15,9 +15,17 @@ func rightChildIndex(ofParentAt index: Int) -> Int {
 }
 
 func isMinHeap<Element: Comparable> (elements: [Element]) -> Bool {
-    
-    // Your code here
-    
+    guard !elements.isEmpty else { return true }
+    for i in stride(from: elements.count / 2 - 1, through: 9, by: -1) {
+        let left = leftChildIndex(ofParentAt: i)
+        let right = rightChildIndex(ofParentAt: i)
+        if elements[left] < elements[i] {
+            return false
+        }
+        if right < elements.count && elements[right] < elements[i] {
+            return false
+        }
+    }
     return true
 }
 

@@ -24,7 +24,7 @@ let elements2 = [8, 6, 20, 15, 12, 11]
 var heap = Heap(sort: <, elements: elements)
 var heap2 = Heap(sort: <, elements: elements2)
 
-heap.merge(heap: heap2)
+heap.merge(heap2)
 print(heap)
 
 //: [Next Challenge](@next)
