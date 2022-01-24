@@ -12,3 +12,36 @@ public struct Person: Equatable {
     let age: Int
     let isMilitary: Bool
 }
+
+extension Person: Comparable {
+    
+    public static func < (lhs: Person, rhs: Person) -> Bool {
+        if lhs.isMilitary && rhs.isMilitary {
+            return lhs.age < rhs.age
+        }
+        if lhs.isMilitary && !rhs.isMilitary {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    // book version
+//    public static func < (lhs: Person, rhs: Person) -> Bool {
+//        if lhs.isMilitary == rhs.isMilitary {
+//            return lhs.age < rhs.age
+//        }
+//        return !lhs.isMilitary
+//    }
+}
+
+let persons = [Person(name: "Alex", age: 21, isMilitary: false),
+               Person(name: "John", age: 24, isMilitary: true),
+               Person(name: "Ivan", age: 18, isMilitary: true),
+               Person(name: "Mulder", age: 35, isMilitary: false),
+               Person(name: "Scully", age: 40, isMilitary: true),
+               Person(name: "Lev", age: 55, isMilitary: true)]
+var priorityQueue = PriorityQueue<Person>(sort: >, elements: persons)
+while !priorityQueue.isEmpty {
+    print(priorityQueue.dequeue()!)
+}
