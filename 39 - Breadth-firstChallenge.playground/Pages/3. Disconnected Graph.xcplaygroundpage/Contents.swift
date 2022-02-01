@@ -41,8 +41,20 @@ extension Graph where Element: Hashable {
 }
 
 extension Graph where Element: Hashable {
+    
     func isDisconnected() -> Bool {
-        // Add your code here
+        guard let firstVertex = allVertices.first else { return false }
+        return breadthFirstSearch(from: firstVertex).count != allVertices.count
+    }
+    
+    func isDisconnectedBookVersion() -> Bool {
+        guard let firstVertex = allVertices.first else { return false }
+        let visited = breadthFirstSearch(from: firstVertex)
+        for vertex in allVertices {
+            if !visited.contains(vertex) {
+                return true
+            }
+        }
         return false
     }
 }
