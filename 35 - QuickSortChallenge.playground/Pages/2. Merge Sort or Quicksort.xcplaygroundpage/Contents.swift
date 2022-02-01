@@ -7,8 +7,6 @@
  Explain when and why you would use merge sort over quicksort.
  */
 
-/*
-Your answer here.
- */
+// Prefer MergeSort if you want stability in results. Also when you want stable O(n logn) time complexity. QuickSort works better, when elements are grouped together in memory.
 
 //: [Next Challenge](@next)
