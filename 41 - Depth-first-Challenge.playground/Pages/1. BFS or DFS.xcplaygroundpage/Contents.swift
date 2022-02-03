@@ -9,12 +9,12 @@
  two nodes? Explain why.
  
  ![Graph](dfschallenge1.png)
-
+ 
  Path from **A** to **F**.
  */
-
+// DFS is better, if B has been connected to A before G. Otherwise performance of DFS will be as well as for BFS.
 /*:
  Path from **A** to **G**.
  */
-
+// BFS is better, is B has been connected to A before G. Otherwise peformance of BFS will be as well as for DFS.
 //: [Next Challenge](@next)
