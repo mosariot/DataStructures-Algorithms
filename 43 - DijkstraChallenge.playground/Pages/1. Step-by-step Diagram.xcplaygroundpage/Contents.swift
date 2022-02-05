@@ -13,4 +13,11 @@
  
  */
 
+/*:
+ Solution:
+ 
+ ![Graph](solution1.png)
+ 
+ */
+
 //: [Next Challenge](@next)

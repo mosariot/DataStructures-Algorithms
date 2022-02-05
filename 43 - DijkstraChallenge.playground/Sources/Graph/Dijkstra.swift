@@ -60,7 +60,12 @@ public class Dijkstra<T: Hashable> {
     }
     
     public func getAllShortestPath(from source: Vertex<T>) -> [Vertex<T> : [Edge<T>]] {
-        // Replace this implementation.
-        return [:]
+        var pathsDict = [Vertex<T>: [Edge<T>]]()
+        let pathsFromSource = shortestPath(from: source)
+        for vertex in graph.vertices {
+            let path = shortestPath(to: vertex, paths: pathsFromSource)
+            pathsDict[vertex] = path
+        }
+        return pathsDict
     }
 }

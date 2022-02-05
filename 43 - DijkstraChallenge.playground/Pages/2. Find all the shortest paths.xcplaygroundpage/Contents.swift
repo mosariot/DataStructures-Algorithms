@@ -31,7 +31,7 @@ graph.add(.directed, from: c, to: e, weight: 2)
 print(graph)
 
 let dijkstra = Dijkstra(graph: graph)
-let pathsDict = dijkstra.getAllShortestPath(from: a) // Implement this
+let pathsDict = dijkstra.getAllShortestPath(from: a)
 
 for (vertex, path) in pathsDict {
     print("Path to \(vertex) from \(a)")
