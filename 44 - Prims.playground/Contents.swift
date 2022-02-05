@@ -1,6 +1,11 @@
 // Copyright (c) 2021 Razeware LLC
 // For full license & permission details, see LICENSE.markdown.
 
+/*:
+ ![Graph](sampleGraph.png)
+ 
+ */
+
 var graph = AdjacencyList<Int>()
 let one = graph.createVertex(data: 1)
 let two = graph.createVertex(data: 2)
